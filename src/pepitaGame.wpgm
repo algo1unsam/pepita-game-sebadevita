@@ -2,8 +2,12 @@ import pepita.*
 import ciudades.*
 import comidas.*
 import wollok.game.*
+import roque.*
 
 program PepitaGame {
+	
+	var com_alp = true
+	var com_man = true
 	
 //	CONFIG	
 	game.title("Pepita")
@@ -16,11 +20,30 @@ program PepitaGame {
 	game.addVisualIn(manzana, game.at(5,1))
 	game.addVisual(buenosAires)
 	game.addVisual(villaGesell)
-	game.addVisualCharacter(pepita)
+	game.addVisual(pepita)
+	game.addVisualCharacter(roque)
 
 //	TECLADO
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
+	
+	
+	keyboard.a().onPressDo {
+	
+		if(com_alp){	
+		pepita.come(alpiste)
+		game.removeVisual(alpiste)
+		com_alp = false
+		}
+	}
+	keyboard.m().onPressDo {
+		
+		if(com_man){
+		pepita.come(manzana)
+		game.removeVisual(manzana)
+		com_man = false
+		}
+	}
 		
 //	START
 	game.start()
