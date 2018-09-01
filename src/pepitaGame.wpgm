@@ -44,6 +44,21 @@ program PepitaGame {
 		com_man = false
 		}
 	}
+	
+	keyboard.space().onPressDo{
+		
+		if(com_alp){
+		
+		roque.tengo_alp(true)
+		game.removeVisual(alpiste)
+		com_alp = false
+	}		
+	
+	}
+	
+	
+	game.whenCollideDo(roque,{ pepita.come(alpiste)}) 
+	
 		
 //	START
 	game.start()
