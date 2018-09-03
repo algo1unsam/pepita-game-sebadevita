@@ -1,4 +1,5 @@
 import ciudades.*
+import roque.*
 
 object pepita {
 	var property energia = 100
@@ -15,6 +16,8 @@ object pepita {
 		if (ciudad != unaCiudad) {
 			self.move(unaCiudad.posicion())
 			ciudad = unaCiudad
+		} else{
+			game.say(self, "ya estoy en una ciudad")
 		}
 	}
 
@@ -23,5 +26,15 @@ object pepita {
 	method move(nuevaPosicion) {
 		energia -= self.energiaParaVolar(posicion.distance(nuevaPosicion))
 		self.posicion(nuevaPosicion)
-	}	
-}
+	}
+	
+	method teEncontro(alguien){ 
+	
+		self.come(roque.comidaActual())
+		game.addVisualIn(roque.comidaActual(), game.at(5,6))	
+	}
+	
+		
+	}
+		
+

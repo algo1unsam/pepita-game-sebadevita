@@ -6,8 +6,7 @@ import roque.*
 
 program PepitaGame {
 	
-	var com_alp = true
-	var com_man = true
+
 	
 //	CONFIG	
 	game.title("Pepita")
@@ -27,38 +26,42 @@ program PepitaGame {
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
 	
-	
-	keyboard.a().onPressDo {
-	
-		if(com_alp){	
-		pepita.come(alpiste)
-		game.removeVisual(alpiste)
-		com_alp = false
-		}
-	}
-	keyboard.m().onPressDo {
-		
-		if(com_man){
-		pepita.come(manzana)
-		game.removeVisual(manzana)
-		com_man = false
-		}
-	}
-	
-	keyboard.space().onPressDo{
-		
-		if(com_alp){
-		
-		roque.tengo_alp(true)
-		game.removeVisual(alpiste)
-		com_alp = false
-	}		
-	
-	}
-	
-	
-	game.whenCollideDo(roque,{ pepita.come(alpiste)}) 
-	
+// COLISIONES
+
+	game.whenCollideDo(roque, {algo => algo.teEncontro(roque)})
+
+
+//	keyboard.a().onPressDo {
+//	
+//		if(com_alp){	
+//		pepita.come(alpiste)
+//		game.removeVisual(alpiste)
+//		com_alp = false
+//		}
+//	}
+//	keyboard.m().onPressDo {
+//		
+//		if(com_man){
+//		pepita.come(manzana)
+//		game.removeVisual(manzana)
+//		com_man = false
+//		}
+//	}
+//	
+//	keyboard.space().onPressDo{
+//		
+//		if(com_alp){
+//		
+//		roque.tengo_alp(true)
+//		game.removeVisual(alpiste)
+//		com_alp = false
+//	}		
+//	
+//	}
+//	
+//	
+//	game.whenCollideDo(roque,{ pepita.come(alpiste)}) 
+//	
 		
 //	START
 	game.start()
