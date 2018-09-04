@@ -9,17 +9,33 @@ object pepita {
 	method imagen() = "pepita.png"
 
 	method come(comida) {
+		
+		if (roque.comidaActual()!= null){
+		
 		energia = energia + comida.energia()
+		game.addVisualIn(roque.comidaActual(), game.at(0.randomUpTo(9), 0.randomUpTo(9)))	
+		roque.vaciarMano()
+		
+		}
 	}
 	
 	method volaHacia(unaCiudad) {
+		
+		if (self.energiaParaVolar(posicion.distance(unaCiudad.posicion()))< energia){
+		
 		if (ciudad != unaCiudad) {
 			self.move(unaCiudad.posicion())
 			ciudad = unaCiudad
 		} else{
 			game.say(self, "ya estoy en una ciudad")
 		}
-	}
+				}else {
+			
+					game.say(self, "No me alcanza la energia")
+			
+		}
+		
+		}
 
 	method energiaParaVolar(distancia) = 15 + 5 * distancia
 
@@ -31,8 +47,10 @@ object pepita {
 	method teEncontro(alguien){ 
 	
 		self.come(roque.comidaActual())
-		game.addVisualIn(roque.comidaActual(), game.at(5,6))	
-	}
+//		game.addVisualIn(roque.comidaActual(), game.at(5, 0.randomUpTo(9)))	
+//		roque.vaciarMano()
+		
+		}
 	
 		
 	}
