@@ -4,9 +4,10 @@ import roque.*
 object pepita {
 	var property energia = 100
 	var property ciudad = buenosAires 
+	var img = "pepita1.png"
 
 	var property posicion = game.at(3,3)
-	method imagen() = "pepita.png"
+	method imagen() = img
 
 	method come(comida) {
 		
@@ -15,6 +16,12 @@ object pepita {
 		energia = energia + comida.energia()
 		game.addVisualIn(roque.comidaActual(), game.at(0.randomUpTo(9), 0.randomUpTo(9)))	
 		roque.vaciarMano()
+		
+		if (energia>100){
+			self.pepitaGorda()
+		} else{
+			self.pepitaNormal()
+		}
 		
 		}
 	}
@@ -42,17 +49,40 @@ object pepita {
 	method move(nuevaPosicion) {
 		energia -= self.energiaParaVolar(posicion.distance(nuevaPosicion))
 		self.posicion(nuevaPosicion)
+		
+		if (energia<10){
+			self.pepitaCansada()
+		} else {
+			
+			self.pepitaNormal()
+			
+		}
+		
 	}
 	
 	method teEncontro(alguien){ 
 	
 		self.come(roque.comidaActual())
-//		game.addVisualIn(roque.comidaActual(), game.at(5, 0.randomUpTo(9)))	
-//		roque.vaciarMano()
+
 		
 		}
-	
+
+	method	pepitaGorda(){
+		
+		img="pepita2.png"
 		
 	}
+	
+	method pepitaCansada(){
 		
-
+		img="pepita.png"
+		
+	}
+	
+	method pepitaNormal(){
+		img="pepita1.png"
+	}
+		
+	}
+	
+	
